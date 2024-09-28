@@ -29,6 +29,8 @@ News
 </style>
 
 <div class="news-container">
+  <p>😎 [03.2024] Our papers <a href="https://hlinchen.github.io/projects/VCR-GauS/">VCR-GauS</a> and <a href="https://arxiv.org/pdf/2405.17958">FreeSplat</a> are accepted at NeurIPS 2024!</p>
+  <p>😎 [03.2024] Our paper <a href="https://dreamguo.github.io/projects/UNIKD/">UNIKD</a> is accepted at ECCV 2024!</p>
   <p>😎 [03.2024] Our paper <a href="https://arxiv.org/pdf/2404.00931">GOV-NeSF</a> is accepted at CVPR 2024!</p>
   <p>🚀 [01.2024] I am awarded the <a href="#">Research Achievement Award</a> by NUS!</p>
   <p>😎 [03.2024] Our paper <a href="https://arxiv.org/pdf/2310.15712.pdf">GNeSF</a> is accepted at NeurIPS 2023!</p>
@@ -85,7 +87,7 @@ Featured Works
           <a href="https://scholar.google.com/citations?user=vv1uLeUAAAAJ&hl=en">Yunsong Wang</a>,
           <a href="https://www.comp.nus.edu.sg/~leegh/">Gim Hee Lee</a>
           <br>
-      arXiv, 2024<br>
+      NeurIPS, 2024<br>
       <!-- color: #0073e6; -->
       <a href="https://hlinchen.github.io/projects/VCR-GauS/" style="text-decoration: none; ">[Project Page]</a>
       <a href="https://arxiv.org/pdf/2406.05774" style="text-decoration: none;">[PDF]</a> 
@@ -114,7 +116,7 @@ Featured Works
           <strong>Hanlin Chen</strong>,
           <a href="https://www.comp.nus.edu.sg/~leegh/">Gim Hee Lee</a>
           <br>
-      arXiv, 2024<br>
+      NeurIPS, 2024<br>
       <!-- color: #0073e6; -->
       <!-- <a href="https://hlinchen.github.io/projects/VCR-GauS/" style="text-decoration: none; ">[Project Page]</a> -->
       <a href="https://arxiv.org/pdf/2405.17958" style="text-decoration: none;">[PDF]</a> 
@@ -130,6 +132,27 @@ Featured Works
       <a href="https://github.com/yourrepo" style="display: flex; align-items: center; text-decoration: none; color: #000;">
       </a>
     </div>
+  </div>
+</div>
+
+<div style="display: flex; align-items: center; margin-bottom: 40px;">
+  <img src="images/UNIKD.gif" alt="UNIKD: UNcertainty-Filtered Incremental Knowledge Distillation for Neural Implicit Representation" style="width: 350px; height: auto; margin-right: 20px;">
+
+  <div>
+    <h3 style="margin: 0;"><a href="https://dreamguo.github.io/projects/UNIKD/" style="text-decoration: none;">UNIKD: UNcertainty-Filtered Incremental Knowledge Distillation for Neural Implicit Representation</a></h3>
+    <p style="margin: 5px 0;">
+      <a href="https://dreamguo.github.io/">Mengqi Guo</a>,
+      <a href="https://chaneyddtt.github.io/">Chen Li</a>,
+      <strong>Hanlin Chen</strong>,
+      <a href="https://www.comp.nus.edu.sg/~leegh/">Gim Hee Lee</a>
+      <br>
+      <!-- <span style="color: red;">ECCV, 2024</span> -->
+      ECCV, 2024
+      <br>
+      <a href="https://dreamguo.github.io/projects/UNIKD/" style="text-decoration: none;">[Project Page]</a>
+      <a href="https://arxiv.org/pdf/2212.10950" style="text-decoration: none;">[PDF]</a>
+      <a href="https://github.com/dreamguo/UNIKD" style="text-decoration: none;">[Code]</a>
+    </p>
   </div>
 </div>
 
