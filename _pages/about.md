@@ -12,6 +12,8 @@ redirect_from:
 
 I am currently a Ph.D. candidate in the Computer Vision and Robotic Perception (CVRP) Laboratory at <strong> National University of Singapore</strong>, under the supervision of A/P [Gim Hee Lee](https://www.comp.nus.edu.sg/~leegh/). I worked as a computer vision algorithm engineer in Alibaba Damo Academy, and my tutors were Mr. Sun Xiuyu and Dr. Lin Ming. My research interests are machine learning and 3D computer vision, especially in neural rendering, visual perception and understanding in the real world. I received my M.S. degree in Pattern Recognition and Intelligent Systems from [Beihang University](https://ev.buaa.edu.cn), advised by Prof. [Baochang Zhang](https://scholar.google.com/citations?user=WH0J_34AAAAJ&hl=en).
 
+<!-- I am looking for a summer internship or an exchange opportunity in a university for 2025. If you think we are a good match, feel free to contact me! -->
+**<span style="color:red;">I am seeking a summer internship at a company or an exchange opportunity at a university for 2025. If you think we are a good match, feel free to contact me!</span>**
 
 News
 ======
@@ -76,6 +78,48 @@ Featured Works
 ======
 
 <div style="display: flex; align-items: center; margin-bottom: 40px;">
+  <img src="images/ChatSplat.jpg" alt="ChatSplat: 3D Conversational Gaussian Splatting" style="width: 350px; height: auto; margin-right: 20px;">
+  <div>
+    <h3 style="margin: 0;"><a href="https://arxiv.org/pdf/2412.00734" style="text-decoration: none;">ChatSplat: 3D Conversational Gaussian Splatting</a></h3>
+    <p style="margin: 5px 0;">
+          <strong>Hanlin Chen</strong>,
+          <a href="https://weify627.github.io/">Fangyin Wei</a>,
+          <a href="https://www.comp.nus.edu.sg/~leegh/">Gim Hee Lee</a>
+          <br>
+      arXiv, 2024<br>
+      <!-- <a href="https://hlinchen.github.io/projects/VCR-GauS/" style="text-decoration: none; ">[Project Page]</a> -->
+      <a href="https://arxiv.org/pdf/2412.00734" style="text-decoration: none;">[PDF]</a> 
+      <a href="https://github.com/HLinChen/ChatSplat" style="text-decoration: none;">[Code]</a>
+    </p>
+    <div style="display: flex; align-items: center; margin-top: 10px;">
+      <a href="https://github.com/yourrepo" style="display: flex; align-items: center; text-decoration: none; color: #000;">
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- <div style="display: flex; align-items: center; margin-bottom: 40px;">
+  <img src="images/FGauS.jpg" alt="FGauS: Flattened Gaussian Splatting for 3D Surface Reconstruction" style="width: 350px; height: auto; margin-right: 20px;">
+  <div>
+    <h3 style="margin: 0;"><a href="https://arxiv.org/pdf/2406.05774" style="text-decoration: none;">FGauS: Flattened Gaussian Splatting for 3D Surface Reconstruction</a></h3>
+    <p style="margin: 5px 0;">
+          <strong>Hanlin Chen</strong>,
+          <a href="https://chaneyddtt.github.io/">Chen Li</a>,
+          <a href="https://weify627.github.io/">Fangyin Wei</a>,
+          <a href="https://www.comp.nus.edu.sg/~leegh/">Gim Hee Lee</a>
+          <br>
+      arXiv, 2024<br>
+      <a href="https://arxiv.org/pdf/2406.05774" style="text-decoration: none;">[PDF]</a> 
+      <a href="https://github.com/HLinChen/FGauS" style="text-decoration: none;">[Code]</a>
+    </p>
+    <div style="display: flex; align-items: center; margin-top: 10px;">
+      <a href="https://github.com/yourrepo" style="display: flex; align-items: center; text-decoration: none; color: #000;">
+      </a>
+    </div>
+  </div>
+</div> -->
+
+<div style="display: flex; align-items: center; margin-bottom: 40px;">
   <img src="images/VCR-GauS.jpg" alt="VCR-GauS: View Consistent Depth-Normal Regularizer for Gaussian Surface Reconstruction" style="width: 350px; height: auto; margin-right: 20px;">
   <div>
     <h3 style="margin: 0;"><a href="https://arxiv.org/pdf/2406.05774" style="text-decoration: none;">VCR-GauS: View Consistent Depth-Normal Regularizer for Gaussian Surface Reconstruction</a></h3>
@@ -118,7 +162,7 @@ Featured Works
           <br>
       NeurIPS, 2024<br>
       <!-- color: #0073e6; -->
-      <!-- <a href="https://hlinchen.github.io/projects/VCR-GauS/" style="text-decoration: none; ">[Project Page]</a> -->
+      <a href="https://wangys16.github.io/FreeSplat-project/" style="text-decoration: none; ">[Project Page]</a>
       <a href="https://arxiv.org/pdf/2405.17958" style="text-decoration: none;">[PDF]</a> 
       <a href="https://github.com/wangys16/FreeSplat" style="text-decoration: none;">[Code]</a>
       <!-- <a href="https://video.com" style="text-decoration: none;">Video</a> / -->
