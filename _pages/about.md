@@ -13,7 +13,7 @@ redirect_from:
 I am currently a Ph.D. candidate in the Computer Vision and Robotic Perception (CVRP) Laboratory at <strong> National University of Singapore</strong>, under the supervision of A/P [Gim Hee Lee](https://www.comp.nus.edu.sg/~leegh/). I worked as a computer vision algorithm engineer in Alibaba Damo Academy, and my tutors were Mr. Sun Xiuyu and Dr. Lin Ming. My research interests are machine learning and 3D computer vision, especially in neural rendering, visual perception and understanding in the real world. I received my M.S. degree in Pattern Recognition and Intelligent Systems from [Beihang University](https://ev.buaa.edu.cn), advised by Prof. [Baochang Zhang](https://scholar.google.com/citations?user=WH0J_34AAAAJ&hl=en).
 
 <!-- I am looking for a summer internship or an exchange opportunity in a university for 2025. If you think we are a good match, feel free to contact me! -->
-**<span style="color:red;">I am seeking a summer internship at a company or an exchange opportunity at a university for 2025. If you think we are a good match, feel free to contact me!</span>**
+**<span style="color:red;">I am seeking an internship at a company for 2026 and am also currently on the job market looking for full-time opportunities. If you think we are a good match, feel free to contact me!</span>**
 
 News
 ======
@@ -76,6 +76,27 @@ News
 
 Featured Works
 ======
+
+<div style="display: flex; align-items: center; margin-bottom: 40px;">
+  <img src="projects/Robust_Dreamer/static/img/robust/teaser.png" alt="Robust Dreamer: Deviation-Aware Latent Gaussian Memory for Action-Controlled AR Video Generation" style="width: 350px; height: auto; margin-right: 20px;">
+  <div>
+    <h3 style="margin: 0;"><a href="https://hlinchen.github.io/projects/Robust_Dreamer/" style="text-decoration: none;">Robust Dreamer: Deviation-Aware Latent Gaussian Memory for Action-Controlled AR Video Generation</a></h3>
+    <p style="margin: 5px 0;">
+          <strong>Hanlin Chen</strong>,
+          <a href="https://goldoak.github.io/">Jiaxin Wei</a>,
+          <a href="https://xbsong.github.io/">Xibin Song</a>,
+          <a href="https://1fwang.github.io/">Yifu Wang</a>,
+          <a href="https://www.bohrium.com/scholar/k11842061/Senbo_Wang">Steve Wang</a>,
+          <a href="https://comp.anu.edu.au/people/hongdong-li/">Hongdong Li</a>,
+          <a href="https://panji530.github.io/">Pan Ji</a>,
+          <a href="https://www.comp.nus.edu.sg/~leegh/">Gim Hee Lee</a>
+          <br>
+      arXiv, 2026<br>
+      <a href="https://hlinchen.github.io/projects/Robust_Dreamer/" style="text-decoration: none; ">[Project Page]</a>
+      <a href="https://arxiv.org/pdf/2605.30855" style="text-decoration: none;">[PDF]</a>
+    </p>
+  </div>
+</div>
 
 <div style="display: flex; align-items: center; margin-bottom: 40px;">
   <img src="images/ChatSplat.jpg" alt="ChatSplat: 3D Conversational Gaussian Splatting" style="width: 350px; height: auto; margin-right: 20px;">
@@ -381,4 +402,3 @@ Other Publications / Preprints
 - Sheng Xu, **Hanlin Chen**, Kexin Liu, Jinhu Lii, Baochang Zhang. [Efficient Block Pruning based on kernel and feature stablization](https://ieeexplore.ieee.org/document/8946001). Proceedings of Digital Image Computing: Techniques and Applications, 2019. (DICTA 2019)
 
 - Chunlei Liu, Wenrui Ding, Yu Hu, **Hanlin Chen**, Baochang Zhang, Shuo Liu. [Guided Convolutional Network](https://www.researchgate.net/publication/336051683_Guided_Convolutional_Network). 13th International Conference on Distributed Smart Cameras. (ICDSC 2019)
-

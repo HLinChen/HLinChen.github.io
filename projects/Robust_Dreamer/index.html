@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Robust Dreamer: Deviation-Aware Latent Gaussian Memory for Action-Controlled AR Video Generation</title>
+  <link rel="icon" type="image/png" href="./static/img/favicon.png">
+
+  <meta name="description" content="Robust Dreamer is a memory-augmented framework for long-horizon, action-controlled autoregressive video generation.">
+  <meta property="og:title" content="Robust Dreamer: Deviation-Aware Latent Gaussian Memory for Action-Controlled AR Video Generation">
+  <meta property="og:description" content="Deviation-aware latent Gaussian memory for robust frame-wise action-controlled world simulation.">
+  <meta property="og:url" content="https://hlinchen.github.io/projects/Robust_Dreamer/">
+  <meta property="og:image" content="https://hlinchen.github.io/projects/Robust_Dreamer/static/img/robust/teaser.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://hlinchen.github.io/projects/Robust_Dreamer/static/img/robust/teaser.png">
+  <link rel="canonical" href="https://hlinchen.github.io/projects/Robust_Dreamer/">
+
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/robust.css">
+</head>
+
+<body>
+  <header class="header-wrapper robust-hero">
+    <div class="header-container" id="top">
+      <div class="header-content">
+        <h1><span class="brand-mark">Robust Dreamer</span></h1>
+        <h2>Deviation-Aware Latent Gaussian Memory for Action-Controlled AR Video Generation</h2>
+        <p>
+          Robust Dreamer is a memory-augmented framework for frame-wise action-controlled video generation.
+          It stores diffusion latents on Gaussian primitives and trains with rollout-like deviations to keep long
+          autoregressive simulations visually faithful and 3D-consistent.
+        </p>
+
+        <div class="icon-container" aria-label="Key ideas">
+          <div class="icon-item">
+            <img src="./static/img/icons/camera.svg" alt="">
+            <div><strong>Frame-wise action control</strong>: each control signal produces the next frame for interactive low-latency rollout.</div>
+          </div>
+          <div class="icon-item">
+            <img src="./static/img/icons/cube.svg" alt="">
+            <div><strong>Latent Gaussian Memory</strong>: generated latents are anchored to Gaussian primitives and recalled by latent-space splatting.</div>
+          </div>
+          <div class="icon-item">
+            <img src="./static/img/icons/formula.svg" alt="">
+            <div><strong>Deviation-aware training</strong>: archived rollout deviations expose the generator to corrupted memory states before inference.</div>
+          </div>
+        </div>
+
+        <div class="button-container">
+          <a href="./static/paper.pdf" class="button paper-link" target="_blank" rel="noopener">
+            <span class="icon is-small"><i class="fas fa-file-pdf"></i></span>
+            <span>Paper</span>
+          </a>
+          <a href="#method" class="button paper-link">
+            <span class="icon is-small"><i class="fas fa-project-diagram"></i></span>
+            <span>Method</span>
+          </a>
+          <a href="#videos" class="button paper-link">
+            <span class="icon is-small"><i class="fas fa-play-circle"></i></span>
+            <span>Videos</span>
+          </a>
+          <a href="https://arxiv.org/pdf/2605.30855" class="button arxiv-tag" target="_blank" rel="noopener" aria-label="arXiv paper">
+            <span class="icon is-small"><i class="fas fa-archive"></i></span>
+            <span>arXiv</span>
+          </a>
+          <span class="button button-disabled" aria-disabled="true">
+            <span class="icon is-small"><i class="fas fa-code"></i></span>
+            <span>Code Coming Soon</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="header-image">
+        <img draggable="false" src="./static/img/robust/teaser.png" alt="Robust Dreamer inference pipeline teaser">
+      </div>
+    </div>
+  </header>
+
+  <div class="byline">
+    <div class="byline-container robust-byline">
+      <div class="byline-column byline-authors">
+        <h3>Authors</h3>
+        <p class="author-list">
+          <span>Hanlin Chen<sup>1</sup>, Jiaxin Wei<sup>2</sup>, Xibin Song<sup>3</sup></span>
+          <span>Yifu Wang<sup>3</sup>, Steve Wang<sup>3</sup>, Hongdong Li<sup>4</sup></span>
+          <span>Pan Ji<sup>3</sup>, Gim Hee Lee<sup>1</sup></span>
+        </p>
+      </div>
+      <div class="byline-column byline-affiliations">
+        <h3>Affiliations</h3>
+        <p class="affiliation-list">
+          <sup>1</sup> School of Computing, National University of Singapore<br>
+          <sup>2</sup> Technische Universit&auml;t M&uuml;nchen<br>
+          <sup>3</sup> Vertex Lab<br>
+          <sup>4</sup> Australian National University
+        </p>
+        <p class="contact-line">Contact: <a href="mailto:hanlin.chen@u.nus.edu">hanlin.chen@u.nus.edu</a></p>
+      </div>
+    </div>
+  </div>
+
+  <main class="page-main">
+    <section class="section" aria-labelledby="abstract-title">
+      <h1 id="abstract-title" class="text">Abstract</h1>
+      <p class="text abstract">
+        Frame-wise action-controlled image-to-video generation is a promising paradigm for interactive world simulation,
+        where each control signal should elicit an immediate visual response. However, maintaining visual fidelity and 3D
+        consistency over long autoregressive rollouts remains challenging. Existing 3D-aware methods often suffer from
+        catastrophic drift due to two impediments: information loss from <em>Latent-RGB Cycling</em>, where generated
+        latents are repeatedly decoded to RGB and re-encoded for future conditioning, and the training-inference gap
+        induced by the <em>error-free hypothesis</em>, where clean training memory fails to match prediction-corrupted
+        inference memory. Robust Dreamer addresses these issues with Latent Gaussian Memory, which anchors inherited
+        diffusion latents to Gaussian primitives and recalls them via latent-space Gaussian splatting, and Deviation
+        Learning with Dynamic Deviation Archive, which trains the generator on realistic rollout-induced memory corruption.
+        Experiments on ScanNet, DL3DV, and OmniWorldGame demonstrate state-of-the-art long-horizon performance.
+      </p>
+    </section>
+
+    <section class="section" aria-labelledby="motivation-title">
+      <h1 id="motivation-title" class="text">Motivation</h1>
+      <p class="text">
+        Long-horizon autoregressive generation is vulnerable to compounding errors. Repeated latent-to-RGB-to-latent
+        conversion progressively damages fine details, and clean training memories do not match the corrupted memories
+        produced by the model's own predictions at inference time.
+      </p>
+      <figure class="figure-block figure-scroll figure-scroll-wide">
+        <img data-zoomable draggable="false" src="./static/img/robust/motivation.png" alt="Motivation for Robust Dreamer: Latent-RGB Cycling and deviation learning.">
+        <figcaption>
+          Robust Dreamer targets two sources of long-rollout failure: accumulated signal degradation from Latent-RGB
+          Cycling and structural collapse from training only with clean memory.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="section" id="method" aria-labelledby="method-title">
+      <h1 id="method-title" class="text">Method</h1>
+      <p class="text">
+        The framework maintains a persistent Latent Gaussian Memory during inference and uses a Dynamic Deviation Archive
+        during training. The memory provides geometry-aware latent conditioning for future views, while deviation learning
+        teaches the Dreamer to denoise from imperfect historical context.
+      </p>
+
+      <figure class="figure-block figure-scroll figure-scroll-wide">
+        <img data-zoomable draggable="false" src="./static/img/robust/training.png" alt="Robust Dreamer training pipeline.">
+        <figcaption>
+          Training pipeline: variable-length histories build deviation-corrupted latent Gaussian memory, the Dreamer
+          predicts the target latent under recalled memory conditioning, and one-step synthesized deviations refresh the archive.
+        </figcaption>
+      </figure>
+
+      <div class="agent-grid">
+        <article class="agent-card">
+          <div class="agent-label arranger">M</div>
+          <h3>Latent Gaussian Memory</h3>
+          <p>Stores generated diffusion latents on Gaussian primitives and recalls dense view-aligned latent features by splatting.</p>
+        </article>
+        <article class="agent-card">
+          <div class="agent-label modeler">D</div>
+          <h3>Dynamic Deviation Archive</h3>
+          <p>Indexes synthesized rollout deviations by autoregressive stage and denoising timestamp to model non-stationary errors.</p>
+        </article>
+        <article class="agent-card">
+          <div class="agent-label refiner">R</div>
+          <h3>Robust Rollout</h3>
+          <p>Conditions each next-frame prediction on the clean anchor, predecessor latent, recalled memory, and action control.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="videos" aria-labelledby="videos-title">
+      <h1 id="videos-title" class="text">Generated Videos</h1>
+
+      <div class="video-gallery">
+        <section class="video-group" aria-labelledby="short-dynamic-title">
+          <h2 id="short-dynamic-title">Short and Dynamic Rollouts</h2>
+          <div class="video-grid">
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/static.mp4"></video>
+              <h3>static</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/dynamic0.mp4"></video>
+              <h3>dynamic0</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/dynamic1.mp4"></video>
+              <h3>dynamic1</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/dynamic2.mp4"></video>
+              <h3>dynamic2</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/dynamic3.mp4"></video>
+              <h3>dynamic3</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/dynamic4.mp4"></video>
+              <h3>dynamic4</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/dynamic5.mp4"></video>
+              <h3>dynamic5</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/dynamic6.mp4"></video>
+              <h3>dynamic6</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/dynamic7.mp4"></video>
+              <h3>dynamic7</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/dynamic8.mp4"></video>
+              <h3>dynamic8</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/dynamic9.mp4"></video>
+              <h3>dynamic9</h3>
+            </article>
+          </div>
+        </section>
+
+        <section class="video-group" aria-labelledby="long-title">
+          <h2 id="long-title">Long Rollouts</h2>
+          <div class="video-grid">
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/long_video.mp4"></video>
+              <h3>long_video</h3>
+            </article>
+          </div>
+        </section>
+
+        <section class="video-group" aria-labelledby="ood-title">
+          <h2 id="ood-title">Out-of-Domain Rollouts</h2>
+          <div class="video-grid">
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/ood0.mp4"></video>
+              <h3>ood0</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/ood1.mp4"></video>
+              <h3>ood1</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/ood2.mp4"></video>
+              <h3>ood2</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/ood3.mp4"></video>
+              <h3>ood3</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/ood_dynamic0.mp4"></video>
+              <h3>ood_dynamic0</h3>
+            </article>
+            <article class="video-card">
+              <video controls muted loop playsinline preload="none" src="./static/videos/demo-copy/ood_dynamic1.mp4"></video>
+              <h3>ood_dynamic1</h3>
+            </article>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="results-title">
+      <h1 id="results-title" class="text">Results</h1>
+      <p class="text">
+        Robust Dreamer is evaluated on ScanNet, DL3DV, and OmniWorldGame with pixel fidelity, perceptual quality, and
+        distribution realism metrics. It preserves appearance and geometry more consistently over long horizons than
+        autoregressive and memory-based baselines.
+      </p>
+      <figure class="figure-block figure-scroll figure-scroll-wide">
+        <img data-zoomable draggable="false" src="./static/img/robust/results.png" alt="Qualitative results on ScanNet and DL3DV.">
+        <figcaption>
+          Qualitative results on ScanNet and DL3DV. Baselines accumulate color drift and structural degradation, while
+          Robust Dreamer maintains coherent geometry and appearance in later rollout frames.
+        </figcaption>
+      </figure>
+
+      <div class="metric-grid">
+        <article class="metric-card">
+          <h3>ScanNet</h3>
+          <p>Indoor long video sequences test robustness under continuous camera motion and complex room geometry.</p>
+        </article>
+        <article class="metric-card">
+          <h3>DL3DV</h3>
+          <p>Diverse real-world scenes evaluate generalization across larger viewpoint changes and appearance variation.</p>
+        </article>
+        <article class="metric-card">
+          <h3>OmniWorldGame</h3>
+          <p>Interactive game-style trajectories stress long-horizon control and dynamic scene consistency.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="deviation-title">
+      <h1 id="deviation-title" class="text">Deviation Robustness</h1>
+      <p class="text">
+        The Dynamic Deviation Archive stores model-induced latent errors instead of injecting unstructured random noise.
+        These deviations capture structured rollout artifacts, such as edge blur and geometry drift, and improve the
+        generator's ability to correct corrupted memory states.
+      </p>
+      <figure class="figure-block figure-scroll">
+        <img data-zoomable draggable="false" src="./static/img/robust/deviation.png" alt="Visualization of synthesized deviation patterns.">
+        <figcaption>
+          Synthesized deviations exhibit structured patterns that better match inference-time artifacts than standard Gaussian noise.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="section" aria-labelledby="citation-title">
+      <h1 id="citation-title" class="text">Citation</h1>
+      <div class="code-panel" aria-label="BibTeX citation">
+        <div class="code-panel-header">BibTeX</div>
+        <pre><code>@article{chen2026robustdreamer,
+  title   = {Robust Dreamer: Deviation-Aware Latent Gaussian Memory for Action-Controlled AR Video Generation},
+  author  = {Chen, Hanlin and Wei, Jiaxin and Song, Xibin and Wang, Yifu and Wang, Steve and Li, Hongdong and Ji, Pan and Lee, Gim Hee},
+  year    = {2026}
+}</code></pre>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="acknowledgement-title">
+      <h1 id="acknowledgement-title" class="text">Acknowledgement</h1>
+      <p class="text">
+        We thank NYU VisionX for the project page template, which was adapted from
+        <a href="https://cupid3d.github.io/" target="_blank" rel="noopener">Cupid</a>.
+      </p>
+    </section>
+  </main>
+
+  <script src="./static/js/medium-zoom.min.js"></script>
+  <script>
+    if (window.mediumZoom) {
+      mediumZoom("[data-zoomable]", {
+        margin: 64,
+        background: "#ffffffee"
+      });
+    }
+
+    document.querySelectorAll("video[src]").forEach((video) => {
+      const src = video.getAttribute("src");
+      if (src) {
+        video.setAttribute("poster", src.replace("./static/videos/", "./static/videos/posters/").replace(/\.mp4$/, ".jpg"));
+      }
+    });
+  </script>
+</body>
+</html>
