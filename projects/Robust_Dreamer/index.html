@@ -34,7 +34,7 @@
         <div class="icon-container" aria-label="Key ideas">
           <div class="icon-item">
             <img src="./static/img/icons/camera.svg" alt="">
-            <div><strong>Frame-wise action control</strong>: each control signal produces the next frame for interactive low-latency rollout.</div>
+            <div><strong>Frame-wise action control</strong>: each action conditions the next generation step in a causal rollout.</div>
           </div>
           <div class="icon-item">
             <img src="./static/img/icons/cube.svg" alt="">
@@ -104,7 +104,7 @@
       <h1 id="abstract-title" class="text">Abstract</h1>
       <p class="text abstract">
         Frame-wise action-controlled image-to-video generation is a promising paradigm for interactive world simulation,
-        where each control signal should elicit an immediate visual response. However, maintaining visual fidelity and 3D
+        where each action conditions the next generation step. However, maintaining visual fidelity and 3D
         consistency over long autoregressive rollouts remains challenging. Existing 3D-aware methods often suffer from
         catastrophic drift due to two impediments: information loss from <em>Latent-RGB Cycling</em>, where generated
         latents are repeatedly decoded to RGB and re-encoded for future conditioning, and the training-inference gap
@@ -113,6 +113,11 @@
         diffusion latents to Gaussian primitives and recalls them via latent-space Gaussian splatting, and Deviation
         Learning with Dynamic Deviation Archive, which trains the generator on realistic rollout-induced memory corruption.
         Experiments on ScanNet, DL3DV, and OmniWorldGame demonstrate state-of-the-art long-horizon performance.
+      </p>
+      <p class="text">
+        Here, &ldquo;interactive&rdquo; refers to causal, step-wise controllability: each action can be selected after
+        observing the current output. Our focus is robust per-action generation; real-time performance is outside
+        the scope of this work.
       </p>
     </section>
 
